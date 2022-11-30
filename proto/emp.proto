@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option go_package = "github.com/akshith/grpc/src/proto";
+
+package empCrudDB;
+
+//Emp schema
+message Emp{
+    int64 id=1;
+    string name=2 ;
+    string manager=3;
+    int64 dept_id=4;
+}
+
+//Schema for the newly created emp
+message NewEmp {
+    int64 id=4;
+    string name =1 ;
+    string manager =2;
+    int64 dept_id =3;
+}
+
+//to make sure that the request is not nil
+message VoidEmpRequest{
+}
+
+//to make sure that the response is not nil
+message VoidEmpResponse{
+}
+
+message TotalEmp {
+    repeated Emp emps=1; //group of slices
+}
+
+//defining our CRUD methods
+service EmployeeDatabaseCrud {
+    rpc CreateEmp(NewEmp) returns (Emp) {} 
+    rpc ReadEmp(VoidEmpRequest) returns (TotalEmp){} 
+    rpc UpdateEmp(Emp) returns (Emp) {} 
+    rpc DeleteEmp(Emp) returns (VoidEmpResponse){} 
+}
+
