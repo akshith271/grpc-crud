@@ -44,14 +44,12 @@ func main() {
 	for _, employee := range total_emp.Emps {
 		fmt.Println(employee.GetName(), employee.GetManager())
 	}
-
 	//updating the manager of an emp
 	updated_emp, err := c.UpdateEmp(ctx, &pb.Emp{Name: "SuryaMadhav", Manager: "Akshith"})
 	if err != nil {
 		panic(err.Error())
 	}
 	fmt.Println(updated_emp)
-
 	//deleting an instance of an emp
 	deleted_emp, err := c.DeleteEmp(ctx, &pb.Emp{Name: "Hemanth"})
 	if err != nil {

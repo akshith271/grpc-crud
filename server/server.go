@@ -86,10 +86,9 @@ func main() {
 		db: connection,
 	})
 
-	//server connection
-	log.Printf("Listening to server on %v", listener.Addr())
-
+	//if connection fails
 	if err := s.Serve(listener); err != nil {
-		log.Fatal("Unable to connect to server", err.Error())
+		log.Fatal(err.Error())
 	}
+
 }
